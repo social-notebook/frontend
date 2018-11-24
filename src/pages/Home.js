@@ -147,7 +147,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <Segment style={{ padding: '8em 0em' }} vertical>
+      <Segment style={{ padding: '8em 0em', backgroundColor: '#fff' }} vertical>
         {/* <Container> */}
         <Grid>
           <Grid.Row>
@@ -156,10 +156,10 @@ export default class Home extends Component {
               <h2>Your Notebooks</h2>
               {this.renderNotebooks()}
             </Grid.Column>
-            <Grid.Column width={2} />
-            <Grid.Column width={2}>
+            <Grid.Column width={1} />
+            <Grid.Column width={3}>
               <h3>Activity Feed</h3>
-              <Feed events={events} />
+              <Feed events={events} className />
             </Grid.Column>
             <Grid.Column width={2} />
           </Grid.Row>
