@@ -153,7 +153,7 @@ export default class Home extends Component {
           <Grid.Row>
             <Grid.Column width={3} />
             <Grid.Column width={7}>
-              <h2>Popular Notebooks</h2>
+              <h2>Your Notebooks</h2>
               {this.renderNotebooks()}
             </Grid.Column>
             <Grid.Column width={2} />
