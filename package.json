@@ -120,13 +120,15 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-emotion": "^9.2.12",
+    "react-icons-kit": "^1.2.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "redux": "^4.0.1",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.83.0",
     "slate": "^0.44.6",
-    "slate-react": "^0.21.12"
+    "slate-react": "^0.21.12",
+    "yarn": "^1.12.3"
   },
   "eslintConfig": {
     "extends": "react-app"
