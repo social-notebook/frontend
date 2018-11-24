@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import Posts from './pages/Posts';
 import Navigation from './components/Navigation';
+import Edit from './pages/Edit';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/posts" component={Posts} />
+            <Route path="/edit" component={Edit} />
             <Route path="/login" component={LoginPage} />
           </Switch>
         </div>
