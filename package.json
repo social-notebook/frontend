@@ -15,7 +15,8 @@
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.83.0",
     "slate": "^0.44.6",
-    "slate-react": "^0.21.12"
+    "slate-react": "^0.21.12",
+    "socket.io-client": "^2.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
