@@ -27,7 +27,8 @@ class Editor extends Component {
   }
 
   send = content => {
-    const data = JSON.stringify(content);
+    const token = localStorage.getItem('token')
+    const data = JSON.stringify({content, token});
     this.socket.emit('updatecontent', data);
   }
 

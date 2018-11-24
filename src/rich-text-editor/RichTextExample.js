@@ -93,7 +93,7 @@ class RichTextExample extends React.Component {
   render() {
     return (
       <div id="rich-text-editor">
-        <Toolbar>
+        <Toolbar id="rich-text-toolbar">
           {this.renderMarkButton('bold', 'format_bold')}
           {this.renderMarkButton('italic', 'format_italic')}
           {this.renderMarkButton('underlined', 'format_underlined')}
@@ -114,6 +114,7 @@ class RichTextExample extends React.Component {
           onKeyDown={this.onKeyDown}
           renderNode={this.renderNode}
           renderMark={this.renderMark}
+          id="edit-area"
         />
       </div>
     )
