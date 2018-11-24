@@ -40,18 +40,6 @@ export default class Navigation extends Component {
               Home
             </Menu.Item>
 
-            {showPosts ? (
-              <Menu.Item
-                name="posts"
-                active={activeItem === 'posts'}
-                onClick={this.handleItemClick}
-                as={NavLink}
-                to="/posts"
-              >
-                Posts
-              </Menu.Item>
-            ) : null}
-
             <Menu.Item
               name="about"
               active={false}
@@ -62,19 +50,6 @@ export default class Navigation extends Component {
           </Menu>
         </Grid.Column>
         <Grid.Column />
-        {showNavBar ? (
-          <Grid.Column>
-            <NavLink to="/login">
-              <Button
-                floated="right"
-                name="login"
-                onClick={this.handleItemClick}
-              >
-                Login
-              </Button>
-            </NavLink>
-          </Grid.Column>
-        ) : null}
       </Grid>
     );
   }
