@@ -85,7 +85,7 @@ class RichTextExample extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="rich-text-editor">
         <Toolbar>
           {this.renderMarkButton('bold', 'format_bold')}
           {this.renderMarkButton('italic', 'format_italic')}
@@ -222,7 +222,8 @@ class RichTextExample extends React.Component {
    */
 
   onChange = ({ value }) => {
-    this.setState({ value })
+    const content = JSON.stringify(value.toJSON());
+    this.setState({ value });
   }
 
   /**
