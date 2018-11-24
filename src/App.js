@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 
@@ -10,15 +11,10 @@ import Navigation from './components/Navigation';
 class App extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      token: localStorage.getItem('token'),
-    };
   }
 
   render() {
-    const { token } = this.state;
-    console.log(token);
+    const { token } = this.props;
     return (
       <BrowserRouter>
         <div className="App">
@@ -40,4 +36,12 @@ class App extends Component {
   }
 }
 
-export default App;
+
+const mapStateToProp = (state) => ({
+  token: state.token,
+  user: state.user
+})
+
+export default connect(mapStateToProp)(App);
+
+
