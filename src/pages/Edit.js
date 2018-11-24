@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import RichTextExample from '../rich-text-editor'
+import Editor from '../rich-text-editor/SocketEditor'
 
 export default class Home extends Component {
   render() {
-    return <RichTextExample />
+    return <Editor/>
   }
 }

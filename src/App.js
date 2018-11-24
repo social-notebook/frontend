@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage';
 import Posts from './pages/Posts';
 import Navigation from './components/Navigation';
 import Edit from './pages/Edit';
+import socketIOClient from 'socket.io-client';
 
 class App extends Component {
   constructor(props) {
@@ -15,6 +16,11 @@ class App extends Component {
     this.state = {
       token: localStorage.getItem('token'),
     };
+
+    this.socket = socketIOClient('http://192.168.20.131:3000');
+    this.socket.on('hello', data => {
+        console.log(data);
+        });
   }
 
   render() {

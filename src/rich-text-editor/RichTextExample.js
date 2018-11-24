@@ -43,6 +43,13 @@ class RichTextExample extends React.Component {
     value: Value.fromJSON(initialValue),
   }
 
+
+  componentDidMount() {
+    setInterval(()=>{
+      this.props.onChange(this.state.value);
+      console.log('Saved')
+    }, 3000);
+  }
   /**
    * Check if the current selection has a mark with `type` in it.
    *
@@ -221,9 +228,8 @@ class RichTextExample extends React.Component {
    * @param {Editor} editor
    */
 
-  onChange = ({ value }) => {
-    const content = JSON.stringify(value.toJSON());
-    this.setState({ value });
+  onChange = (change, options = {}) => {
+    this.setState({ value: change.value })
   }
 
   /**
