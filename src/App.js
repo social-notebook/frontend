@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 
@@ -24,8 +25,7 @@ class App extends Component {
   }
 
   render() {
-    const { token } = this.state;
-    console.log(token);
+    const { token } = this.props;
     return (
       <BrowserRouter>
         <div className="App">
@@ -48,4 +48,12 @@ class App extends Component {
   }
 }
 
-export default App;
+
+const mapStateToProp = (state) => ({
+  token: state.token,
+  user: state.user
+})
+
+export default connect(mapStateToProp)(App);
+
+

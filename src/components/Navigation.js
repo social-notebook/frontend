@@ -7,8 +7,6 @@ export default class Navigation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showNavBar: true,
-      showPosts: true,
       activeItem: '',
     };
   }
@@ -23,7 +21,7 @@ export default class Navigation extends Component {
   };
 
   render() {
-    const { activeItem, showNavBar, showPosts } = this.state;
+    const { activeItem } = this.state;
     console.log('rerender');
     console.log(activeItem);
 

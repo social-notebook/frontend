@@ -9,6 +9,7 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-emotion": "^9.2.12",
+    "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "redux": "^4.0.1",
@@ -40,7 +41,8 @@
     "eslint-plugin-react": "^7.11.1",
     "husky": "^1.1.3",
     "lint-staged": "^8.0.4",
-    "pretty-quick": "^1.8.0"
+    "pretty-quick": "^1.8.0",
+    "redux-devtools": "^3.4.2"
   },
   "lint-staged": {
     "*.{js,jsx}": [
@@ -49,6 +51,5 @@
       "git add"
     ]
   },
-  "precommit": "lint-staged",
-  "homepage": "https://ct-group.gitlab.io/web-client"
+  "precommit": "lint-staged"
 }
