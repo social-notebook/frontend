@@ -8,13 +8,29 @@ import Posts from './pages/Posts';
 import Navigation from './components/Navigation';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      token: localStorage.getItem('token'),
+    };
+  }
+
   render() {
+    const { token } = this.state;
+    console.log(token);
     return (
       <BrowserRouter>
         <div className="App">
-          <Navigation />
+          {token ? <Navigation /> : null}
           <Switch>
-            <Route path="/" exact component={Home} />
+            <Route
+              path="/"
+              exact
+              render={() => {
+                return token === null ? <LoginPage /> : <Home />;
+              }}
+            />
             <Route path="/posts" component={Posts} />
             <Route path="/login" component={LoginPage} />
           </Switch>
