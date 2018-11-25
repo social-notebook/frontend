@@ -1,6 +1,7 @@
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
-
+import {URL_HOST} from '../config.js'
+import socketIOClient from 'socket.io-client';
 import React from 'react'
 import initialValue from './value.json'
 import { isKeyHotkey } from 'is-hotkey'
@@ -38,18 +39,18 @@ class RichTextExample extends React.Component {
    *
    * @type {Object}
    */
+   constructor(props){
+    super(props);
+    this.state = {
+      value: Value.fromJSON(initialValue)
+    }
+    this.socket = socketIOClient(URL_HOST);
+   }
 
-  state = {
-    value: Value.fromJSON(initialValue),
-  }
+   setContentValue = (value) => {
+    this.setState({ value: Value.fromJSON(value)})
+   }
 
-
-  componentDidMount() {
-    setInterval(()=>{
-      this.props.onChange(this.state.value);
-      console.log('Saved')
-    }, 3000);
-  }
   /**
    * Check if the current selection has a mark with `type` in it.
    *
@@ -231,6 +232,7 @@ class RichTextExample extends React.Component {
 
   onChange = (change, options = {}) => {
     this.setState({ value: change.value })
+    this.props.onChange(change.value)
   }
 
   /**

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 import { Grid, Button, Menu } from 'semantic-ui-react';
 import './Navigation.css';
 
-export default class Navigation extends Component {
+class Navigation extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,13 +14,16 @@ export default class Navigation extends Component {
 
   handleItemClick = (e, { name }) => {
     if (name === 'login') {
-      this.setState({ showNavBar: false });
+      this.setState({ showNavBar: true });
     } else {
       this.setState({ showNavBar: true });
     }
     this.setState({ activeItem: name });
   };
-
+  logOut = (args) => {
+    localStorage.removeItem('token')
+    this.props.history.push('/')
+  }
   render() {
     const { activeItem } = this.state;
     console.log('rerender');
@@ -47,12 +50,29 @@ export default class Navigation extends Component {
                 About
               </Menu.Item>
 
-              <Menu.Item  name='login' active={activeItem === 'login'} onClick={this.handleItemClick} as={NavLink} to="/login">
-                Login
+              <Menu.Item
+                name='create'
+                active={activeItem === 'create'}
+                onClick={this.handleItemClick}
+                as={NavLink}
+                to="/edit"
+              >
+                Create
               </Menu.Item>
+
+
+              {localStorage.getItem('token') === null ?               <Menu.Item  name='login' active={activeItem === 'login'} onClick={this.handleItemClick} as={NavLink} to="/login">
+                Login
+              </Menu.Item> : <Menu.Item onClick={this.logOut}>
+                Logout
+              </Menu.Item>}
+
       </Menu> : null;
 
     console.log(this.state.showNavBar)
     return navbar
   }
 }
+
+
+export default withRouter(Navigation)

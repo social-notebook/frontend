@@ -1,29 +1,34 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import socketIOClient from 'socket.io-client';
-
+import {URL_HOST} from '../config.js'
 import RichTextExample from './RichTextExample';
+import initialValue from './value.json'
 
 class Editor extends Component {
   constructor(props) {
     super(props);
+    const ownerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiYyIsImlhdCI6MTU0MzA3NzIwNH0.6ZIqvSAqxMjBo4g8_0qR2XT9rxFbr52f6KLJBNfwCbM"
+    // this.uniqueID = Math.round(Math.random() * 1000000000000);
+    this.socket = socketIOClient(URL_HOST);
+    this.socket.on('typing', data => {
+      console.log('typing', data)
+      if(data.token !== localStorage.getItem('token')){
+        if(this.slate && data.content){
+          const dataContent = JSON.parse(data.content)
+                    console.log('listen evnt', dataContent)
 
-    this.state = {
-      endpoint: process.env.REACT_APP_SERVER
-    }
-
-    this.uniqueID = Math.round(Math.random() * 1000000000000);
-
-    this.socket = socketIOClient('http://192.168.20.131:3000');
-
-    this.socket.on('update content', data => {
-      const content = JSON.parse(data)
-      const { uniqueID, content: ops } = content;
-      if (ops !== null && this.uniqueID !== uniqueID) {
-        setTimeout(() => {
-          this.slate.applyOperations(ops);
-        });
+          this.slate.setContentValue(dataContent); 
+        }
       }
     });
+    // check if user is owner of this note
+    this.state = {
+      isOwner: false,
+      content: initialValue,
+    }
+    const current_token = localStorage.getItem('token');
+    if (current_token === ownerToken) this.setState({isOwner: true})
   }
 
   send = content => {
@@ -33,14 +38,8 @@ class Editor extends Component {
   }
 
   onChange = change => {
-    // const ops = change.operations
-    //   .filter(o => o.type !== 'set_selection' && o.type !== 'set_value')
-    //   .toJS();
-
-    // if (ops.length > 0) {
-    //   this.send(ops);
-    // }
     const data = JSON.stringify(change);
+    console.log('check update', data)
     this.send(data);
   }
 

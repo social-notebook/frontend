@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { URL_HOST } from '../config.js';
 
@@ -9,7 +9,7 @@ class LoginPage extends Component {
     super(props);
     this.state = {
       username: '',
-      password: '',
+      password: ''
     };
   }
 
@@ -17,22 +17,20 @@ class LoginPage extends Component {
 
   handleSubmit = props => {
     const { username, password } = this.state;
-    console.log(username);
-    console.log(URL_HOST);
 
     axios
-      .post(`http://${URL_HOST}/auth/login`, {
+      .post(`${URL_HOST}/auth/register`, {
         username,
         password,
       })
-      .then(function(response) {
+      .then(response => {
         console.log(response);
         if (response.status === 200 && response.data.token !== '') {
           localStorage.setItem('token', response.data.token);
-          props.history.push('/');
+          this.props.history.push('/');
         }
       })
-      .catch(function(error) {
+      .catch(error => {
         console.log(error);
       });
   };
